@@ -4,51 +4,92 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
+   <h:outputStylesheet library="css" name="addProduct.css" />
    <title>Añadir Producto</title>
 </h:head>
 
 <h:body>
-   <h:form>
-      <!-- Sección para agregar un producto -->
-      <h2>Agregar Producto</h2>
-      <h:panelGrid columns="2">
-         <h:outputLabel for="nombre" value="Nombre del Producto:" />
-         <h:inputText id="nombre" value="#{productoBean.producto.nombre}" required="true" />
+      <h:form>
+         <div class="tab-container">
+            <!-- Pestaña para agregar un producto -->
+            <div class="tab" onclick="openTab(event, 'tabAgregarProducto')">Agregar Producto</div>
 
-         <h:outputLabel for="cantidad" value="Cantidad:" />
-         <h:inputText id="cantidad" value="#{productoBean.producto.cantidad}" required="true" />
+            <!-- Pestaña para añadir una nueva categoría -->
+            <div class="tab" onclick="openTab(event, 'tabAgregarCategoria')">Añadir Categoría</div>
 
-         <h:outputLabel for="categoria" value="Categoría:" />
-         <h:selectOneMenu id="categoria" value="#{productoBean.producto.categoria}" required="true">
-            <f:selectItems value="#{productoBean.categorias}" var="categoria" itemLabel="#{categoria.nombre}" itemValue="#{categoria}" />
-         </h:selectOneMenu>
+            <!-- Pestaña para añadir un nuevo proveedor -->
+            <div class="tab" onclick="openTab(event, 'tabAgregarProveedor')">Añadir Proveedor</div>
+         </div>
 
-         <h:outputLabel for="proveedor" value="Proveedor:" />
-         <h:selectOneMenu id="proveedor" value="#{productoBean.producto.proveedor}" required="true">
-            <f:selectItems value="#{productoBean.proveedores}" var="proveedor" itemLabel="#{proveedor.nombre}" itemValue="#{proveedor}" />
-         </h:selectOneMenu>
-      </h:panelGrid>
+         <!-- Contenido de las pestañas -->
+         <div id="tabAgregarProducto" class="tab-content">
+            <h:panelGrid columns="1">
+               <!-- Contenido de la sección "Agregar Producto" -->
+               <h2>Agregar Producto</h2>
+               <h:panelGrid columns="2">
+                  <h:outputLabel for="nombre" value="Nombre del Producto:" />
+                  <h:inputText id="nombre" value="#{productoBean.producto.nombre}" required="true" />
 
-      <h:commandButton value="Guardar Producto" action="#{productoBean.guardarProducto}" />
+                  <h:outputLabel for="cantidad" value="Cantidad:" />
+                  <h:inputText id="cantidad" value="#{productoBean.producto.cantidad}" required="true" />
 
-      <!-- Sección para añadir una nueva categoría -->
-      <h2>Añadir Categoría</h2>
-      <h:panelGrid columns="2">
-         <h:outputLabel for="newCategoria" value="Nueva Categoría:" />
-         <h:inputText id="newCategoria" value="#{productoBean.newCategoria}" required="true" />
+                  <h:outputLabel for="categoria" value="Categoría:" />
+                  <h:selectOneMenu id="categoria" value="#{productoBean.producto.categoria}" required="true">
+                     <f:selectItems value="#{productoBean.categorias}" var="categoria" itemLabel="#{categoria.nombre}" itemValue="#{categoria}" />
+                  </h:selectOneMenu>
 
-         <h:commandButton value="Añadir Categoría" action="#{productoBean.addCategoria}" />
-      </h:panelGrid>
+                  <h:outputLabel for="proveedor" value="Proveedor:" />
+                  <h:selectOneMenu id="proveedor" value="#{productoBean.producto.proveedor}" required="true">
+                     <f:selectItems value="#{productoBean.proveedores}" var="proveedor" itemLabel="#{proveedor.nombre}" itemValue="#{proveedor}" />
+                  </h:selectOneMenu>
+               </h:panelGrid>
 
-      <!-- Sección para añadir un nuevo proveedor -->
-      <h2>Añadir Proveedor</h2>
-      <h:panelGrid columns="2">
-         <h:outputLabel for="newProveedor" value="Nuevo Proveedor:" />
-         <h:inputText id="newProveedor" value="#{productoBean.newProveedor}" required="true" />
+               <h:commandButton value="Guardar Producto" action="#{productoBean.guardarProducto}" />
+            </h:panelGrid>
+         </div>
 
-         <h:commandButton value="Añadir Proveedor" action="#{productoBean.addProveedor}" />
-      </h:panelGrid>
-   </h:form>
+         <div id="tabAgregarCategoria" class="tab-content" style="display: none;">
+            <h:panelGrid columns="1">
+               <!-- Contenido de la sección "Añadir Categoría" -->
+               <h2>Añadir Categoría</h2>
+               <h:panelGrid columns="2">
+                  <h:outputLabel for="newCategoria" value="Nueva Categoría:" />
+                  <h:inputText id="newCategoria" value="#{productoBean.newCategoria}" required="true" />
+
+                  <h:commandButton value="Añadir Categoría" action="#{productoBean.addCategoria}" />
+               </h:panelGrid>
+            </h:panelGrid>
+         </div>
+
+         <div id="tabAgregarProveedor" class="tab-content" style="display: none;">
+            <h:panelGrid columns="1">
+               <!-- Contenido de la sección "Añadir Proveedor" -->
+               <h2>Añadir Proveedor</h2>
+               <h:panelGrid columns="2">
+                  <h:outputLabel for="newProveedor" value="Nuevo Proveedor:" />
+                  <h:inputText id="newProveedor" value="#{productoBean.newProveedor}" required="true" />
+
+                  <h:commandButton value="Añadir Proveedor" action="#{productoBean.addProveedor}" />
+               </h:panelGrid>
+            </h:panelGrid>
+         </div>
+
+         <!-- Script para controlar las pestañas -->
+         <script>
+            function openTab(evt, tabName) {
+               var i, tabContent, tabLinks;
+               tabContent = document.getElementsByClassName("tab-content");
+               for (i = 0; i &lt; tabContent.length; i++) {
+                  tabContent[i].style.display = "none";
+               }
+               tabLinks = document.getElementsByClassName("tab");
+               for (i = 0; i &lt; tabLinks.length; i++) {
+                  tabLinks[i].classList.remove("active");
+               }
+               document.getElementById(tabName).style.display = "block";
+               evt.currentTarget.classList.add("active");
+            }
+         </script>
+      </h:form>
 </h:body>
-
 </html>

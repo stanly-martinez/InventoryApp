@@ -1,0 +1,60 @@
+/* Estilos para el contenedor del formulario */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Estilo básico para las pestañas */
+.tab-container {
+    display: flex;
+    border-bottom: 1px solid #ccc;
+}
+
+.tab {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.tab.active {
+    background-color: #f0f0f0;
+    border-top: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+}
+
+
+
+/* Estilos para el contenedor del formulario */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Estilo básico para las pestañas */
+.tab-container {
+    display: flex;
+    border-bottom: 1px solid #ccc;
+}
+
+.tab {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.tab.active {
+    background-color: #f0f0f0;
+    border-top: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+}
+
+/* Estilo para el formulario */
+div[id="form"] {
+    width: 300px; /* Puedes ajustar el ancho según tus necesidades */
+    margin: 0 auto; /* Esto centrará horizontalmente el formulario dentro del contenedor */
+}
+
