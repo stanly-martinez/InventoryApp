@@ -10,6 +10,7 @@ public class Producto {
 
     private String nombre;
     private double precio;
+    private int cantidad;
 
     @ManyToOne
     @JoinColumn(name = "id_categoria")
@@ -58,5 +59,13 @@ public class Producto {
 
     public void setProveedor(Proveedor proveedor) {
         this.proveedor = proveedor;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
 }

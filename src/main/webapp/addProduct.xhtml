@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+   <title>Añadir Producto</title>
+</h:head>
+
+<h:body>
+   <h:form>
+      <h2>Añadir Producto</h2>
+
+      <h:panelGrid columns="2">
+         <h:outputLabel for="productName" value="Product Name:" />
+         <h:inputText id="productName" value="#{productoBean.producto.nombre}" required="true" />
+
+         <h:outputLabel for="productQuantity" value="Quantity:" />
+         <h:inputText id="productQuantity" value="#{productoBean.producto.cantidad}" required="true" />
+
+         <h:outputLabel for="productCategory" value="Category:" />
+         <h:selectOneMenu id="productCategory" value="#{productoBean.producto.categoria}" required="true">
+            <f:selectItem itemLabel="-- Select Category --" itemValue="" noSelectionOption="true" />
+            <f:selectItems value="#{productoBean.categorias}" var="categoria" itemLabel="#{categoria.nombre}" itemValue="#{categoria}" />
+         </h:selectOneMenu>
+
+         <h:inputText id="newCategory" value="#{productoBean.newCategoria}" />
+         <h:commandButton value="Add Category" action="#{productoBean.addCategoria}" />
+
+         <h:outputLabel for="productProvider" value="Provider:" />
+         <h:selectOneMenu id="productProvider" value="#{productoBean.producto.proveedor}" required="true">
+            <f:selectItem itemLabel="-- Select Provider --" itemValue="" noSelectionOption="true" />
+            <f:selectItems value="#{productoBean.proveedores}" var="proveedor" itemLabel="#{proveedor.nombre}" itemValue="#{proveedor}" />
+         </h:selectOneMenu>
+
+         <h:inputText id="newProvider" value="#{productoBean.newProveedor}" />
+         <h:commandButton value="Add Provider" action="#{productoBean.addProveedor}" />
+      </h:panelGrid>
+
+      <h:message for="productName" />
+      <h:message for="productQuantity" />
+      <h:message for="productCategory" />
+      <h:message for="productProvider" />
+
+      <h:commandButton value="Add" action="#{productoBean.guardarProducto}" />
+   </h:form>
+</h:body>
+
+</html>

@@ -14,6 +14,14 @@ public class Categoria {
 
     private String nombre;
 
+    public Categoria(String newCategoria) {
+
+    }
+
+    public Categoria() {
+
+    }
+
     //Getters and setters
     public long getIdCategoria() {
         return idCategoria;

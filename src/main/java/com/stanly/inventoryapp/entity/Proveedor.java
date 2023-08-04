@@ -16,6 +16,13 @@ public class Proveedor {
     private String direccion;
     private String telefono;
 
+    public Proveedor(String newProveedor) {
+    }
+
+    public Proveedor() {
+
+    }
+
     //Getters and setters
     public long getIdProveedor() {
         return idProveedor;
